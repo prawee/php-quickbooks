@@ -67,6 +67,14 @@ $_SESSION['authUrl'] = $authUrl;
                 <img src="assets/images/quickbooks_logo_horz.png" class="img-responsive" />
             </a>
         </h1>
+
+        <hr/>
+
+        <div class="well text-center">
+            <h1>QuickBooks sample application</h1>
+            <h2>Demonstrate connect to QuickBooks flow and API request</h2>
+        </div>
+
     </div>
 </bod>
 </html>
