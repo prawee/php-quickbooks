@@ -26,7 +26,7 @@ $dotenv->required([
 /*
  * Test
  */
-echo '<pre>'.print_r($_ENV, true).'</pre>';
+//echo '<pre>'.print_r($_ENV, true).'</pre>';
 
 use QuickBooksOnline\API\DataService\DataService;
 
@@ -43,8 +43,24 @@ $dataService = DataService::Configure([
 
 $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
 $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
-echo $authUrl;
-
 $_SESSION['authUrl'] = $authUrl;
 
 echo '<pre>'.print_r($_SESSION, 10).'</pre>';
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="apple-touch-icon icon shortcut" type="image/png" href="https://plugin.intuitcdn.net/sbg-web-shell-ui/6.3.0/shell/harmony/images/QBOlogo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="views/common.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<bod>
+
+</bod>
+</html>
