@@ -1,1 +1,1 @@
-# php-quickbooks
+# PHP QuickBooks
