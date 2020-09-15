@@ -67,7 +67,8 @@ if (isset($_SESSION['sessionAccessToken']))
     //echo '<pre>'.print_r($accessTokenJson, true).'</pre>';
     $dataService->updateOAuth2Token($accessToken);
     $oauthLoginHelper = $dataService->getOAuth2LoginHelper();
-    $CompanyInfo = $dataService->getCompanyInfo();
+    //$CompanyInfo = $dataService->getCompanyInfo();
+    //echo '<pre>'.print_r($CompanyInfo, true).'</pre>';
 }
 ?>
 <!DOCTYPE html>
@@ -132,8 +133,15 @@ if (isset($_SESSION['sessionAccessToken']))
         <pre id="accessToken" class="pre-code"><?=json_encode($displayString, JSON_PRETTY_PRINT)?></pre>
 
         <a href="#" class="imgLink" onclick="oauth.loginPopup()">
-            <img src="assets/images/C2QB_green_btn_lg_default.png" width="178"
+            <img src="assets/images/C2QB_green_btn_lg_default.png" width="178" />
         </a>
+
+        <hr/>
+
+        <h2>Make an API call</h2>
+        <p class="text-center">
+            if there is no access token or access token is invalid, click either the <b>Connect to QuickBooks</b> button above.
+        </p>
     </div>
 </bod>
 </html>
