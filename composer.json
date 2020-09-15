@@ -1,5 +1,6 @@
 {
     "require": {
-        "quickbooks/v3-php-sdk": "^5.4"
+        "quickbooks/v3-php-sdk": "^5.4",
+        "vlucas/phpdotenv": "^5.2"
     }
 }
