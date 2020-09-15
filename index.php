@@ -29,7 +29,7 @@ $dotenv->required([
  * Start session
  */
 session_start();
-echo '<pre>'.print_r($_SESSION, true).'</pre>';
+//echo '<pre>'.print_r($_SESSION, true).'</pre>';
 
 /*
  * Configure and Test
@@ -64,7 +64,7 @@ if (isset($_SESSION['sessionAccessToken']))
         'x_refresh_token_expires_in' => $accessToken->getRefreshTokenExpiresAt(),
         'expires_in' => $accessToken->getAccessTokenExpiresAt()
     ];
-    echo '<pre>'.print_r($accessTokenJson, true).'</pre>';
+    //echo '<pre>'.print_r($accessTokenJson, true).'</pre>';
     $dataService->updateOAuth2Token($accessToken);
     $oauthLoginHelper = $dataService->getOAuth2LoginHelper();
     $CompanyInfo = $dataService->getCompanyInfo();
@@ -110,7 +110,7 @@ if (isset($_SESSION['sessionAccessToken']))
 <bod>
     <div class="container">
         <h1>
-            <a href="http://developer.intuit.com">
+            <a href="http://developer.intuit.com" target="_blank">
                 <img src="assets/images/quickbooks_logo_horz.png" class="img-responsive" />
             </a>
         </h1>
