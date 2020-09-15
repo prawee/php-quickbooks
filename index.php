@@ -142,6 +142,12 @@ if (isset($_SESSION['sessionAccessToken']))
         <p class="text-center">
             if there is no access token or access token is invalid, click either the <b>Connect to QuickBooks</b> button above.
         </p>
+
+        <pre id="apiCall"></pre>
+
+        <button type="button" class="btn btn-success" onclick="#">
+            Get Company Info
+        </button>
     </div>
 </bod>
 </html>
