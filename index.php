@@ -84,6 +84,9 @@ $_SESSION['authUrl'] = $authUrl;
         ?>
         <pre id="accessToken" class="pre-code"><?=json_encode($displayString, JSON_PRETTY_PRINT)?></pre>
 
+        <a href="#" class="imgLink">
+            <img src="assets/images/C2QB_green_btn_lg_default.png" width="178"
+        </a>
     </div>
 </bod>
 </html>
