@@ -3,12 +3,14 @@
  * Load vendor and dependencies
  */
 require('./vendor/autoload.php');
+use QuickBooksOnline\API\DataService\DataService;
 
 /*
  * Load env
  */
 $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+//echo '<pre>'.print_r($_ENV, true).'</pre>';
 
 /*
  * Env required
@@ -24,14 +26,14 @@ $dotenv->required([
 ])->notEmpty();
 
 /*
- * Test
+ * Start session
  */
-//echo '<pre>'.print_r($_ENV, true).'</pre>';
-
-use QuickBooksOnline\API\DataService\DataService;
-
 session_start();
+echo '<pre>'.print_r($_SESSION, true).'</pre>';
 
+/*
+ * Configure and Test
+ */
 $dataService = DataService::Configure([
     'auth_mode' => 'oauth2',
     'ClientID' => $_ENV['CLIENT_ID'],
@@ -43,10 +45,30 @@ $dataService = DataService::Configure([
 
 $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
 $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
+
+/*
+ * store the url in PHP session object
+ */
 $_SESSION['authUrl'] = $authUrl;
 
-echo '<pre>'.print_r($_SESSION, 10).'</pre>';
-
+/*
+ * set the access token using the auth object
+ */
+if (isset($_SESSION['sessionAccessToken']))
+{
+    $accessToken = $_SESSION['sessionAccessToken'];
+    $accessTokenJson = [
+        'token_type' => 'bearer',
+        'access_token' => $accessToken->getAccessToken(),
+        'refresh_token' => $accessToken->getRefreshToken(),
+        'x_refresh_token_expires_in' => $accessToken->getRefreshTokenExpiresAt(),
+        'expires_in' => $accessToken->getAccessTokenExpiresAt()
+    ];
+    echo '<pre>'.print_r($accessTokenJson, true).'</pre>';
+    $dataService->updateOAuth2Token($accessToken);
+    $oauthLoginHelper = $dataService->getOAuth2LoginHelper();
+    $CompanyInfo = $dataService->getCompanyInfo();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -105,7 +127,7 @@ echo '<pre>'.print_r($_SESSION, 10).'</pre>';
         </p>
 
         <?php
-        $displayString = isset($accessToken) ? $accessToken : "No access token generated yet";
+        $displayString = isset($accessTokenJson) ? $accessTokenJson : "No access token generated yet";
         ?>
         <pre id="accessToken" class="pre-code"><?=json_encode($displayString, JSON_PRETTY_PRINT)?></pre>
 
