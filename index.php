@@ -45,7 +45,7 @@ $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
 $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
 $_SESSION['authUrl'] = $authUrl;
 
-echo '<pre>'.print_r($_SESSION, 10).'</pre>';
+//echo '<pre>'.print_r($_SESSION, 10).'</pre>';
 
 ?>
 <!DOCTYPE html>
@@ -55,12 +55,18 @@ echo '<pre>'.print_r($_SESSION, 10).'</pre>';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="views/common.css">
+    <link rel="stylesheet" href="assets/css/common.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <bod>
-
+    <div class="container">
+        <h1>
+            <a href="http://developer.intuit.com">
+                <img src="assets/images/quickbooks_logo_horz.png" class="img-responsive" />
+            </a>
+        </h1>
+    </div>
 </bod>
 </html>
