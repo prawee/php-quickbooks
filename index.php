@@ -45,7 +45,7 @@ $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
 $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
 $_SESSION['authUrl'] = $authUrl;
 
-//echo '<pre>'.print_r($_SESSION, 10).'</pre>';
+echo '<pre>'.print_r($_SESSION, 10).'</pre>';
 
 ?>
 <!DOCTYPE html>
@@ -59,6 +59,31 @@ $_SESSION['authUrl'] = $authUrl;
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script>
+        let OAuthCode = function(url) {
+            this.loginPopup = function(parameter) {
+                this.loginPopupUri(parameter);
+            }
+            this.loginPopupUri = function(parameter) {
+                const parameters = "location=1,width=800,height=650,left="+(screen.width - 800)/2+",top="+(screen.height - 650)/2;
+                const win = window.open(url, 'connectPopup', parameters);
+                const pollOAuth = window.setInterval(function() {
+                    try {
+                        if (win.document.URL.indexOf("code") != -1) {
+                            window.clearInterval(pollOAuth);
+                            win.close();
+                            location.reload();
+                        }
+                    } catch (e) {
+                        console.log(e);
+                    }
+                }, 100);
+            }
+        }
+
+        const url = '<?=$authUrl?>';
+        const oauth = new OAuthCode(url);
+    </script>
 </head>
 <bod>
     <div class="container">
@@ -84,7 +109,7 @@ $_SESSION['authUrl'] = $authUrl;
         ?>
         <pre id="accessToken" class="pre-code"><?=json_encode($displayString, JSON_PRETTY_PRINT)?></pre>
 
-        <a href="#" class="imgLink">
+        <a href="#" class="imgLink" onclick="oauth.loginPopup()">
             <img src="assets/images/C2QB_green_btn_lg_default.png" width="178"
         </a>
     </div>
