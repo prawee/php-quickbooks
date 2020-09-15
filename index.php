@@ -75,6 +75,9 @@ $_SESSION['authUrl'] = $authUrl;
             <h2>Demonstrate connect to QuickBooks flow and API request</h2>
         </div>
 
+        <p class="text-center">
+            If there is no access token or the access token is invalid, click the <b>Connect to QuickBooks</b> button below.
+        </p>
     </div>
 </bod>
 </html>
