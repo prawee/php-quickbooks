@@ -78,6 +78,12 @@ $_SESSION['authUrl'] = $authUrl;
         <p class="text-center">
             If there is no access token or the access token is invalid, click the <b>Connect to QuickBooks</b> button below.
         </p>
+
+        <?php
+        $displayString = isset($accessToken) ? $accessToken : "No access token generated yet";
+        ?>
+        <pre id="accessToken" class="pre-code"><?=json_encode($displayString, JSON_PRETTY_PRINT)?></pre>
+
     </div>
 </bod>
 </html>
