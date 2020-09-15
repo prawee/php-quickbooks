@@ -82,6 +82,7 @@ if (isset($_SESSION['sessionAccessToken']))
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="assets/js/api.js"></script>
     <script>
         let OAuthCode = function(url) {
             this.loginPopup = function(parameter) {
@@ -106,6 +107,7 @@ if (isset($_SESSION['sessionAccessToken']))
 
         const url = '<?=$authUrl?>';
         const oauth = new OAuthCode(url);
+        const apiCall = new apiQB();
     </script>
 </head>
 <bod>
@@ -143,9 +145,9 @@ if (isset($_SESSION['sessionAccessToken']))
             if there is no access token or access token is invalid, click either the <b>Connect to QuickBooks</b> button above.
         </p>
 
-        <pre id="apiCall"></pre>
+        <pre id="apiResult"></pre>
 
-        <button type="button" class="btn btn-success" onclick="#">
+        <button type="button" class="btn btn-success" onclick="apiCall.getCompanyInfo()">
             Get Company Info
         </button>
     </div>
